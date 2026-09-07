@@ -6,18 +6,13 @@ const userSchema = new mongoose.Schema({
     contact: { type: String, required: false },
     password: {
         type: String,
-        required: function () {
-            return !this.googleId;
-        }
+        required: true
     },
     fullname: { type: String, required: true },
     role: {
         type: String,
         enum: [ "buyer", "seller" ],
         default: "buyer"
-    },
-    googleId: {
-        type: String,
     }
 })
 
