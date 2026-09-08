@@ -11,3 +11,4 @@ export const routes = createBrowserRouter([
         element: <Register />
     }
 ])
+
