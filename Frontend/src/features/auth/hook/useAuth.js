@@ -10,7 +10,7 @@ export const useAuth = () => {
 
         const data = await register({ email, contact, password, fullname, isSeller })
 
-        //we got user's data from register Api and set it in setUser state 
+        //we got user's data from register API and set it in setUser state 
         dispatch(setUser(data.user))
 
         return data.user
