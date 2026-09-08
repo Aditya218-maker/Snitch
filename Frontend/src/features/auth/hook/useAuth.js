@@ -2,8 +2,6 @@ import { setError, setLoading, setUser } from "../state/auth.slice"
 import { register, login, getMe } from "../service/auth.api"
 import { useDispatch } from "react-redux"
 
-
-
 export const useAuth = () => {
 
     const dispatch = useDispatch()
@@ -12,6 +10,7 @@ export const useAuth = () => {
 
         const data = await register({ email, contact, password, fullname, isSeller })
 
+        //we got user's data from register Api and set it in setUser state 
         dispatch(setUser(data.user))
 
         return data.user
