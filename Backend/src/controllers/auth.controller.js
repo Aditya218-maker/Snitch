@@ -95,11 +95,12 @@ export const googleCallback = async (req, res) => {
     const email = emails[ 0 ].value;
     const profilePic = photos[ 0 ].value;
 
-
+// Here we've to make sure if a user isn't registered yet then register him or if already registered then he can login 
     let user = await userModel.findOne({
         email
     })
 
+    //register him(create his account)
     if (!user) {
         user = await userModel.create({
             email,
@@ -108,7 +109,7 @@ export const googleCallback = async (req, res) => {
         })
     }
 
-
+    
     const token = jwt.sign({
         id: user._id,
     }, config.JWT_SECRET, {
