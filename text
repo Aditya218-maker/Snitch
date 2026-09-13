@@ -1,0 +1,12 @@
+# we've to create a feature:
+where only a seller can create products and the products created by seller should be visible to the seller at some page.
+
+# Break this problem into subprpblems:
+1. seller can create new products
+2. seller can see products created by him/her
+
+# Solve the problem that can be solved easily and should be solved first logically
+that is the first one : seller can create new products
+To create a new product : IN Backend we need to create 
+1. APIs   2. Models  3. Protect the API   => ab in teeno me sabse pehle model create krenge
+In APIS we need ROUTERS and CONTROLLERS
