@@ -12,3 +12,5 @@ To create a new product : IN Backend we need to create
 => ab in teeno me sabse pehle model create krenge
 => For APIS we need ROUTERS and CONTROLLERS
 => To make APIs protected we need to use a middleware 
+
+
