@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { validateLoginUser, validateRegisterUser } from "../validator/auth.validator.js";
-import { login, register,googleCallback } from "../controllers/auth.controller.js";
+import { login, register,googleCallback, getMe } from "../controllers/auth.controller.js";
 import passport from "passport";
 import { config } from "../config/config.js";
+import { authenticateUser } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
