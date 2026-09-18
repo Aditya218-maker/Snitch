@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Register from "../features/auth/pages/Register.jsx";
 import Login from "../features/auth/pages/Login.jsx";
 import CreateProduct from "../features/products/pages/CreateProduct.jsx";
+import Dashboard from "../features/products/pages/Dashboard.jsx";
 
 export const routes = createBrowserRouter([
     {
@@ -17,8 +18,18 @@ export const routes = createBrowserRouter([
         element: <Login/>
     },
     {
-        path: "/seller/create-product",
-        element: <CreateProduct/>
+        path: "/seller",
+        //perform nesting as we will have multiple APIs starting with /seller
+        children : [
+            {
+                path: "/seller/create-product",
+                element: <CreateProduct /> 
+            },
+            {
+                path: "/seller/dashboard",
+                element: <Dashboard />
+            }
+        ]
     }
 ])
 
