@@ -1,29 +1,28 @@
-import { setError, setLoading, setUser } from "../state/auth.slice.js"
+import { setLoading, setUser } from "../state/auth.slice.js"
 import { register, login, getMe } from "../service/auth.api.js"
 import { useDispatch } from "react-redux"
+import { useCallback } from "react"
 
 export const useAuth = () => {
 
     const dispatch = useDispatch()
 
-    async function handleRegister({ email, contact, password, fullname, isSeller = false }) {
-
+    const handleRegister = useCallback(async ({ email, contact, password, fullname, isSeller = false }) => {
         const data = await register({ email, contact, password, fullname, isSeller })
 
-        //we got user's data from register API and set it in setUser state 
+        // we got user's data from register API and set it in setUser state 
         dispatch(setUser(data.user))
 
         return data.user
-    }
+    }, [dispatch])
 
-    async function handleLogin({ email, password }) {
-
+    const handleLogin = useCallback(async ({ email, password }) => {
         const data = await login({ email, password })
         dispatch(setUser(data.user))
         return data.user
-    }
+    }, [dispatch])
 
-    async function handleGetMe() {
+    const handleGetMe = useCallback(async () => {
         try {
             dispatch(setLoading(true))
             const data = await getMe()
@@ -33,8 +32,7 @@ export const useAuth = () => {
         } finally {
             dispatch(setLoading(false))
         }
-    }
+    }, [dispatch])
 
     return { handleRegister, handleLogin, handleGetMe }
-
 }
