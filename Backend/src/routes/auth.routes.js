@@ -21,6 +21,13 @@ router.get("/google/callback",
     googleCallback
 )
 
+/**
+ * @route GET /api/auth/me
+ * @description Get the authenticated user's profile
+ * @access Private
+ */
+router.get('/me', authenticateUser, getMe)
+
 
 export default router;
 
