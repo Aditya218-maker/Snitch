@@ -1,5 +1,5 @@
-import { setError, setLoading, setUser } from "../state/auth.slice"
-import { register, login, getMe } from "../service/auth.api"
+import { setError, setLoading, setUser } from "../state/auth.slice.js"
+import { register, login, getMe } from "../service/auth.api.js"
 import { useDispatch } from "react-redux"
 
 export const useAuth = () => {
