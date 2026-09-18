@@ -24,11 +24,11 @@ export const routes = createBrowserRouter([
         children : [
             {
                 path: "/seller/create-product",
-                element: <Protected><CreateProduct /></Protected>
+                element: <Protected role="seller" ><CreateProduct /></Protected>
             },
             {
                 path: "/seller/dashboard",
-                element: <Dashboard />
+                element: <Protected role="seller"><Dashboard /></Protected>
             }
         ]
     }
