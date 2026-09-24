@@ -1,5 +1,6 @@
 import express from "express"
 import { authenticateUser } from "../middlewares/auth.middleware.js";
+import { validateAddToCart } from "../validator/cart.validator.js";
 
 const router = express.Router();
 
