@@ -15,7 +15,7 @@ const SellerProductDetails = () => {
   // UI state for inputs to maintain focus
   const [ attributeInputs, setAttributeInputs ] = useState([ { key: '', value: '' } ]);
 
-  // New variant state
+  // New variant state: to save state of new product variants
   const [ newVariant, setNewVariant ] = useState({
     images: [],
     stock: 0,
@@ -23,6 +23,7 @@ const SellerProductDetails = () => {
     price: { amount: '', currency: 'INR' }
   });
 
+  //extract a single variable named productId from the object returned by the useParams() hook
   const { productId } = useParams();
   const { handleGetProductById, handleAddProductVariant } = useProduct();
 
@@ -43,9 +44,7 @@ const SellerProductDetails = () => {
     }
   }
 
-  useEffect(() => {
-    fetchProductDetails();
-  }, [ productId ]);
+  useEffect(() => { fetchProductDetails();}, [ productId ]);
 
   // Handlers for modifying existing variant stock natively
   const handleStockChange = (index, newStock) => {
@@ -57,6 +56,7 @@ const SellerProductDetails = () => {
   // Handlers for New Variant Form
   const handleAddNewVariant = async () => {
     // Validate required at least one attribute to be filled
+    
     const hasValidAttribute = attributeInputs.some(attr => attr.key.trim() && attr.value.trim());
     if (!hasValidAttribute) {
       alert("At least one valid attribute is required.");
