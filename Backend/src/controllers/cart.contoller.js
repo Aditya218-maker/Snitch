@@ -69,5 +69,19 @@ export const addToCart = async (req, res) => {
     })
 }
 
+export const getCart = async (req, res) => {
+    const user = req.user
 
+    let cart = await getCartDetails(user._id)
+
+    if (!cart) {
+        cart = await cartModel.create({ user: user._id })
+    }
+
+    return res.status(200).json({
+        message: "Cart fetched successfully",
+        success: true,
+        cart
+    })
+}
 
