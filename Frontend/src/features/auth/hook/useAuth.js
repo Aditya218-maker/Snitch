@@ -22,6 +22,19 @@ export const useAuth = () => {
         return data.user
     }, [dispatch])
 
+    const handleLogout = useCallback(async () => {
+        try {
+            dispatch(setLoading(true))
+            await logout()
+            // Clear user from Redux store on logout success
+            dispatch(setUser(null))
+        } catch (err) {
+            console.log("Logout error:", err)
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }, [dispatch])
+
     const handleGetMe = useCallback(async () => {
         try {
             dispatch(setLoading(true))
@@ -34,5 +47,5 @@ export const useAuth = () => {
         }
     }, [dispatch])
 
-    return { handleRegister, handleLogin, handleGetMe }
+    return { handleRegister, handleLogin, handleGetMe, handleLogout }
 }

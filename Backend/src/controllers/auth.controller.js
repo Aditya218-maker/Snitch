@@ -27,7 +27,6 @@ async function sendTokenResponse(user, res, message) {
 
 }
 
-
 export const register = async (req, res) => {
     const { email, contact, password, fullname, isSeller } = req.body;
 
@@ -76,6 +75,26 @@ export const login = async (req, res) => {
 
     await sendTokenResponse(user, res, "User logged in successfully")
 }
+
+export const logout = async (req, res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: config.NODE_ENV === "production",
+            sameSite: "lax"
+        });
+
+        return res.status(200).json({
+            message: "Logged out successfully",
+            success: true
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to logout",
+            success: false
+        });
+    }
+};
 
 export const googleCallback = async (req, res) => {
     const { id, displayName, emails, photos } = req.user

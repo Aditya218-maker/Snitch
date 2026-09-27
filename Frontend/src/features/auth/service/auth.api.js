@@ -25,6 +25,11 @@ export async function login({ email, password }) {
     return response.data
 }
 
+export const logout = async () => {
+    const response = await authApiInstance.post("/logout");
+    return response.data;
+}
+
 export async function getMe() {
     const response = await authApiInstance.get("/me")
 
