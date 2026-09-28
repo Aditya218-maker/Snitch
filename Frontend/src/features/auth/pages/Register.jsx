@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useAuth } from "../hook/useAuth.js";
+import React, { useState } from 'react';
+import { useAuth } from "../hook/useAuth";
 import { useNavigate } from 'react-router';
-import ContinueWithGoogle from '../components/ContinueWithGoogle.jsx';
+import ContinueWithGoogle from '../components/ContinueWithGoogle';
 
 const Register = () => {
     const { handleRegister } = useAuth();

@@ -1,10 +1,17 @@
 import { useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router'
+import { useAuth } from '../../auth/hook/useAuth.js'
 
 const Nav = () => {
     const navigate = useNavigate()
+    const { handleLogout } = useAuth()
     const user = useSelector(state => state.auth.user)
     const cartItems = useSelector(state => state.cart?.items)
+
+    const onLogoutClick = async () => {
+        await handleLogout()
+        navigate('/login')
+    }
 
     return (
         <nav className="px-8 lg:px-16 xl:px-24 pt-10 pb-6 flex items-center justify-between border-b" style={{ borderColor: '#e4e2df' }}>
@@ -49,6 +56,13 @@ const Nav = () => {
                                 </span>
                             )}
                         </Link>
+                        <button
+                            onClick={onLogoutClick}
+                            className="transition-colors hover:text-[#8c2b2b] uppercase tracking-[0.2em] cursor-pointer"
+                            style={{ color: '#7A6E63' }}
+                        >
+                            Logout
+                        </button>
                     </>
                 ) : (
                     <>

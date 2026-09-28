@@ -1,5 +1,5 @@
 import { setLoading, setUser } from "../state/auth.slice.js"
-import { register, login, getMe } from "../service/auth.api.js"
+import { register, login, getMe,logout } from "../service/auth.api.js"
 import { useDispatch } from "react-redux"
 import { useCallback } from "react"
 
