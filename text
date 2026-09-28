@@ -14,3 +14,58 @@ To create a new product : IN Backend we need to create
 => To make APIs protected we need to use a middleware 
 
 
+
+  [
+    {
+      $match: {
+        user: ObjectId('6ab8bd908f1463f9f86ec0fe')
+      }
+    },
+    { $unwind: { path: '$items' } },
+    {
+      $lookup: {
+        from: 'products',
+        localField: 'items.product',
+        foreignField: '_id',
+        as: 'items.product'
+      }
+    },
+    { $unwind: { path: '$items.product' } },
+    {
+      $unwind: { path: '$items.product.variants' }
+    },
+    {
+      $match: {
+        $expr: {
+          $eq: [
+            '$items.variant',
+            '$items.product.variants._id'
+          ]
+        }
+      }
+    },
+    {
+      $addFields: {
+        itemPrice: {
+          price: {
+            $multiply: [
+              '$items.quantity',
+              '$items.product.variants.price.amount'
+            ]
+          },
+          currency:
+            '$items.product.variants.price.currency'
+        }
+      }
+    },
+    {
+      $group: {
+        _id: '$_id',
+        totalPrice: { $sum: '$itemPrice.price' },
+        currency: {
+          $first: '$itemPrice.currency'
+        },
+        items: { $push: '$items' }
+      }
+    }
+  ]
