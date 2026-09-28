@@ -123,7 +123,7 @@ export const getCart = async (req, res) => {
   try {
     const user = req.user
 
-    let cart = await cartModel.aggregate([
+    let cart = (await cartModel.aggregate([
       {
         $match: {
           user: new mongoose.Types.ObjectId(user._id)
@@ -172,7 +172,7 @@ export const getCart = async (req, res) => {
           items: { $push: '$items' }
         }
       }
-    ])
+    ])) [0]
 
     if (!cart) {
       cart = await cartModel.create({ user: user._id })
