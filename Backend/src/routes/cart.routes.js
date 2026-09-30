@@ -30,5 +30,14 @@ router.get('/', authenticateUser, getCart)
  * @argument variantId - ID of the variant to update
  */
 router.patch("/quantity/increment/:productId/:variantId", authenticateUser, validateIncrementCartItemQuantity, incrementCartItemQuantity)
+
+/**
+ * @route POST /api/cart/payment/create/order
+ */
+router.post("/payment/create/order", authenticateUser, createOrderController)
+
+
+
+
 export default router;
 
