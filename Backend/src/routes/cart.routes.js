@@ -36,8 +36,7 @@ router.patch("/quantity/increment/:productId/:variantId", authenticateUser, vali
  */
 router.post("/payment/create/order", authenticateUser, createOrderController)
 
-
-
+router.post("/payment/verify/order", authenticateUser, verifyOrderController)
 
 export default router;
 

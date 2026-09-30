@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import { getCartDetails } from '../dao/cart.dao.js'
 import { config } from '../config/config.js'
 
+
 export const addToCart = async (req, res) => {
   try {
     const { productId, variantId } = req.params
