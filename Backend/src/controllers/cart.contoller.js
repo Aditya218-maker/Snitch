@@ -265,7 +265,6 @@ export const incrementCartItemQuantity = async (req, res) => {
 
 export const createOrderController = async (req, res) => {
 
-
     const cart = await getCartDetails(req.user._id)
 
     if (!cart) {
