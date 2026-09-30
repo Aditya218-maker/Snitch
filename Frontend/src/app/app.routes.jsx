@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router";
-import Register from "../features/auth/pages/Register.jsx";
-import Login from "../features/auth/pages/Login.jsx";
-import CreateProduct from "../features/products/pages/CreateProduct.jsx";
-import Dashboard from "../features/products/pages/Dashboard.jsx";
-import Protected from "../features/auth/components/Protected.jsx";
-import Home from "../features/products/pages/Home.jsx";
-import ProductDetail from "../features/products/pages/ProductDetail.jsx";
-import SellerProductDetails from "../features/products/pages/SellerProductDetails.jsx";
-import Cart from "../features/cart/pages/Cart.jsx";
-import AppLayout from "./Applayout.jsx";
+import Register from "../features/auth/pages/Register";
+import Login from "../features/auth/pages/Login";
+import CreateProduct from "../features/products/pages/CreateProduct";
+import Dashboard from "../features/products/pages/Dashboard";
+import Protected from "../features/auth/components/Protected";
+import Home from "../features/products/pages/Home";
+import ProductDetail from "../features/products/pages/ProductDetail";
+import SellerProductDetails from "../features/products/pages/SellerProductDetails";
+import Cart from "../features/cart/pages/Cart";
+import AppLayout from "./Applayout";
+import OrderSuccess from "../features/cart/pages/OrderSuccess";
 
 export const routes = createBrowserRouter([
 
@@ -34,6 +35,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Protected> <Cart /></Protected>
+            },
+            {
+                path: "/order-success",
+                element: <OrderSuccess />
             },
             {
                 path: "/seller",

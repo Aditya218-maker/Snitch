@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useCart } from '../hook/useCart.js'
 import { Link, useNavigate } from 'react-router'
-import { useRazorpay } from "react-razorpay"
+import { useRazorpay } from "react-razorpay";
 
 /* ─── Inline styles & tokens matching the "Avenue Montaigne" design system ─── */
 const tokens = {
@@ -64,7 +64,7 @@ const Cart = () => {
 
 
         const options = {
-            key: "rzp_test_Ti6CbaixffVU8V",
+            key: "rzp_test_ShNSkpxt3emQVJ",
             amount: order.amount, // Amount in paise
             currency: order.currency,
             name: "Snitch",
