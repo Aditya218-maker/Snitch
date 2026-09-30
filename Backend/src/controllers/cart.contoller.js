@@ -188,6 +188,7 @@ export const getCart = async (req, res) => {
   }
 }
 
+
 export const incrementCartItemQuantity = async (req, res) => {
   try {
     const { productId, variantId } = req.params
@@ -259,4 +260,49 @@ export const incrementCartItemQuantity = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message, success: false })
   }
+}
+
+
+export const createOrderController = async (req, res) => {
+
+
+    const cart = await getCartDetails(req.user._id)
+
+    if (!cart) {
+        return res.status(400).json({
+            message: "Cart is empty",
+            success: false
+        })
+    }
+
+    const order = await createOrder({ amount: cart.totalPrice, currency: cart.currency })
+
+    const payment = await paymentModel.create({
+        user: req.user._id,
+        razorpay: {
+            orderId: order.id,
+        },
+        price: {
+            amount: cart.totalPrice,
+            currency: cart.currency
+        },
+        orderItems: cart.items.map(item => ({
+            title: item.product.title,
+            productId: item.product._id,
+            variantId: item.variant,
+            quantity: item.quantity,
+            images: item.product.variants.images || item.product.images,
+            description: item.product.description,
+            price: {
+                amount: item.product.variants.price.amount || item.product.price.amount,
+                currency: item.product.variants.price.currency || item.product.price.currency
+            }
+        }))
+    })
+
+    return res.status(200).json({
+        message: "Order created successfully",
+        success: true,
+        order
+    })
 }
