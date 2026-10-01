@@ -9,8 +9,6 @@ import { validatePaymentVerification } from "razorpay/dist/utils/razorpay-utils.
 import { config } from "../config/config.js";
 
 
-
-
 export const addToCart = async (req, res) => {
 
     const { productId, variantId } = req.params
@@ -191,6 +189,14 @@ export const verifyOrderController = async (req, res) => {
         razorpay_payment_id,
         razorpay_signature
     } = req.body
+
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+        return res.status(400).json({
+            message: "Missing payment details",
+            success: false
+        })
+    }
+
 
     const payment = await paymentModel.findOne({
         "razorpay.orderId": razorpay_order_id,
