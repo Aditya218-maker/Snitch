@@ -4,6 +4,11 @@ A full-stack fashion e-commerce web app built with the MERN stack. Buyers can br
 
 Features
 
+Built a REST API with Express and MongoDB, with email/password and Google login, JWT cookies, and buyer/seller role-based access
+Calculated cart totals on the server using MongoDB aggregation pipelines, so prices can't be tampered with from the browser
+Integrated Razorpay payments with server-side signature verification
+Handled image uploads with Multer and ImageKit; built the frontend with React, Redux Toolkit and Tailwind
+
 For everyone
 
 Register and log in with email and password, or with Google
